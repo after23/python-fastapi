@@ -11,7 +11,7 @@ print(config.settings.secret_key)
 
 app = FastAPI()
 
-origins = ["https://www.google.com", "https://www.youtube.com"]
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
