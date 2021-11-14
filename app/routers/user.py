@@ -9,6 +9,11 @@ router = APIRouter(prefix="/users", tags=["Users"])
 def crete_user(user: schemas.UserCreate, db : Session = Depends(get_db)):
     user.password = utils.hashed(user.password)
 
+    user_email = db.query(models.User).filter(models.User.email == user.email).first()
+
+    if user_email:
+        raise HTTPException(status_code=status.HTTP_409_CONFLICT, detail=f"email: {user.email} already exist")
+
     new_user = models.User(**user.dict())
     db.add(new_user)
     db.commit()
