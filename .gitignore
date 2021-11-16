@@ -4,3 +4,4 @@ venv/
 docker-compose-dev.yml
 app/testing_mytest.py
 tests/test_calculation.py
+docker-hub-api-key-for-github-action
